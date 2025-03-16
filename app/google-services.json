@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "607678935946",
+    "project_id": "fiap-esg",
+    "storage_bucket": "fiap-esg.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:607678935946:android:063e894efdb670b4814e73",
+        "android_client_info": {
+          "package_name": "br.com.hearflash"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAImqv8erXpaVRPSDwb02wvHe-gvGYFZs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
