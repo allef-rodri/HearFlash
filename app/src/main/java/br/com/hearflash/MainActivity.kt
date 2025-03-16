@@ -9,12 +9,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import br.com.hearflash.ui.theme.EcocreditosTheme
+import com.google.firebase.FirebaseApp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
+        FirebaseApp.initializeApp(this)
         val authViewModel = AuthViewModel()
 
         setContent {

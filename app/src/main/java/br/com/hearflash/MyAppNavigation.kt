@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import br.com.hearflash.screens.CarbonFootprintCalculator
 import br.com.hearflash.screens.Home
 import br.com.hearflash.screens.Login
 import br.com.hearflash.screens.SignUp
@@ -30,6 +31,14 @@ fun MyAppNavigation(modifier: Modifier = Modifier, authViewModel: AuthViewModel)
         }
         composable("home") {
             Home(
+                modifier,
+                navController,
+                authViewModel
+            )
+        }
+
+        composable("carbonCalculator") {
+            CarbonFootprintCalculator(
                 modifier,
                 navController,
                 authViewModel

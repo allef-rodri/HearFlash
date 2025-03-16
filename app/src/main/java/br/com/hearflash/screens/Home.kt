@@ -37,8 +37,8 @@ fun Home(modifier: Modifier = Modifier, navController: NavController, authViewMo
     ) {
         Text(text = "Home", fontSize = 32.sp)
 
-        TextButton(onClick = { authViewModel.logout() }) {
-            Text(text = "Sair")
+        TextButton(onClick = { navController.navigate("carbonCalculator") }) {
+            Text(text = "Calculadora")
         }
     }
 }
