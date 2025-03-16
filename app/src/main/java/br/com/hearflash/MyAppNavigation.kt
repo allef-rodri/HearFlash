@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import br.com.hearflash.screens.Dashboard
 import br.com.hearflash.screens.Home
 import br.com.hearflash.screens.Login
 import br.com.hearflash.screens.SignUp
@@ -33,6 +34,15 @@ fun MyAppNavigation(modifier: Modifier = Modifier, authViewModel: AuthViewModel)
                 modifier,
                 navController,
                 authViewModel
+            )
+        }
+        composable("dashboard") {
+            Dashboard(
+                modifier,
+                navController,
+                authViewModel,
+                pegadaCarbono = 120.0,
+                meta = 100.0
             )
         }
     })
