@@ -41,6 +41,14 @@ fun Home(modifier: Modifier = Modifier, navController: NavController, authViewMo
     ) {
         Text(text = "Home", fontSize = 32.sp)
 
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(onClick = { navController.navigate("dashboard") }) {
+            Text(text = "Dashboard")
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
         TextButton(onClick = { authViewModel.logout() }) {
             Text(text = "Sair")
         }
