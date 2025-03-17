@@ -1,6 +1,7 @@
 package br.com.hearflash.screens
 
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -16,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -24,7 +26,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.com.hearflash.AuthViewModel
+import br.com.hearflash.R
 
+/**
+ * Tela de Cadastro
+ * Permite que o usuário se registre fornecendo um e-mail e senha.
+ */
 @Composable
 fun SignUp(
     modifier: Modifier = Modifier,
@@ -40,6 +47,7 @@ fun SignUp(
     val authState by authViewModel.authState.observeAsState()
     val context = LocalContext.current
 
+    // Observa mudanças no estado de autenticação e redireciona para a home caso autenticado
     LaunchedEffect(authState) {
         when (authState) {
             is AuthViewModel.AuthState.Authenticated -> {
@@ -55,49 +63,51 @@ fun SignUp(
         }
     }
 
-    //  Degradê do fundo
+    // Fundo com degradê para um visual mais agradável
     val backgroundGradient = Brush.verticalGradient(
         colors = listOf(Color(0xFF09203F), Color(0xFF537895), Color(0xFF84A9C0))
     )
 
-    //  Degradê do Card (janela central)
+    // Card central com degradê
     val cardGradient = Brush.verticalGradient(
         colors = listOf(Color(0xFF1E2A38), Color(0xFF283D52), Color(0xFF345B73))
     )
 
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(backgroundGradient),
+        modifier = Modifier.fillMaxSize().background(backgroundGradient),
         contentAlignment = Alignment.Center
     ) {
-        //  Card com degradê
         Card(
-            modifier = Modifier
-                .padding(16.dp),
+            modifier = Modifier.padding(16.dp),
             shape = RoundedCornerShape(16.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-            colors = CardDefaults.cardColors(containerColor = Color.Transparent) // Para permitir o degradê manualmente
+            colors = CardDefaults.cardColors(containerColor = Color.Transparent)
         ) {
             Box(
                 modifier = Modifier
-                    .background(cardGradient, shape = RoundedCornerShape(16.dp)) // Aplicando degradê ao Card
+                    .background(cardGradient, shape = RoundedCornerShape(16.dp))
                     .padding(24.dp)
             ) {
                 Column(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.logo),
+                        contentDescription = "Logo",
+                        modifier = Modifier.size(150.dp)
+                    )
+                    Spacer(modifier = Modifier.height(12.dp))
+
                     Text(
                         text = "Cadastre-se",
                         fontSize = 30.sp,
                         color = Color(0xFF00E5FF),
                         style = MaterialTheme.typography.titleLarge
                     )
-
                     Spacer(modifier = Modifier.height(12.dp))
 
-                    // Campo de E-mail
+                    // Campo de entrada para e-mail
                     OutlinedTextField(
                         value = email,
                         onValueChange = { email = it },
@@ -111,10 +121,9 @@ fun SignUp(
                             unfocusedBorderColor = Color.LightGray
                         )
                     )
-
                     Spacer(modifier = Modifier.height(12.dp))
 
-                    // Campo de Senha
+                    // Campo de Senha com botão de visibilidade
                     OutlinedTextField(
                         value = password,
                         onValueChange = { password = it },
@@ -138,7 +147,6 @@ fun SignUp(
                             unfocusedBorderColor = Color.LightGray
                         )
                     )
-
                     Spacer(modifier = Modifier.height(12.dp))
 
                     // Campo de Confirmação de Senha
@@ -165,16 +173,15 @@ fun SignUp(
                             unfocusedBorderColor = Color.LightGray
                         )
                     )
-
                     Spacer(modifier = Modifier.height(12.dp))
 
-                    // Exibição de erro caso exista
+                    // Exibição de mensagem de erro caso as senhas não coincidam
                     errorMessage?.let {
                         Text(text = it, color = Color.Red, fontSize = 14.sp)
                         Spacer(modifier = Modifier.height(8.dp))
                     }
 
-                    // 🔹 Botão de Cadastro agora com cor destacada
+                    // Botão de Cadastro
                     Button(
                         onClick = {
                             if (password == confirmPassword) {

@@ -1,6 +1,7 @@
 package br.com.hearflash.screens
 
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -16,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -24,7 +26,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.com.hearflash.AuthViewModel
+import br.com.hearflash.R
 
+/**
+ * Tela de Login
+ * Essa função define a interface de login do usuário.
+ */
 @Composable
 fun Login(modifier: Modifier = Modifier, navController: NavController, authViewModel: AuthViewModel) {
     var email by remember { mutableStateOf("") }
@@ -33,6 +40,7 @@ fun Login(modifier: Modifier = Modifier, navController: NavController, authViewM
     val authState by authViewModel.authState.observeAsState()
     val context = LocalContext.current
 
+    // Observa mudanças no estado de autenticação e navega para a home caso autenticado
     LaunchedEffect(authState) {
         when (authState) {
             is AuthViewModel.AuthState.Authenticated -> navController.navigate("home")
@@ -45,10 +53,12 @@ fun Login(modifier: Modifier = Modifier, navController: NavController, authViewM
         }
     }
 
+    // Fundo com degradê para melhorar o design
     val backgroundGradient = Brush.verticalGradient(
         colors = listOf(Color(0xFF09203F), Color(0xFF537895), Color(0xFF84A9C0))
     )
 
+    // Card com degradê para diferenciar da tela
     val cardGradient = Brush.verticalGradient(
         colors = listOf(Color(0xFF1E2A38), Color(0xFF283D52), Color(0xFF345B73))
     )
@@ -72,6 +82,13 @@ fun Login(modifier: Modifier = Modifier, navController: NavController, authViewM
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.logo),
+                        contentDescription = "Logo",
+                        modifier = Modifier.size(150.dp)
+                    )
+                    Spacer(modifier = Modifier.height(12.dp))
+
                     Text(
                         text = "Login",
                         fontSize = 30.sp,
@@ -80,6 +97,7 @@ fun Login(modifier: Modifier = Modifier, navController: NavController, authViewM
                     )
                     Spacer(modifier = Modifier.height(12.dp))
 
+                    // Campo de entrada para e-mail
                     OutlinedTextField(
                         value = email,
                         onValueChange = { email = it },
@@ -95,6 +113,7 @@ fun Login(modifier: Modifier = Modifier, navController: NavController, authViewM
                     )
                     Spacer(modifier = Modifier.height(12.dp))
 
+                    // Campo de senha com opção de exibição
                     OutlinedTextField(
                         value = password,
                         onValueChange = { password = it },
@@ -120,6 +139,7 @@ fun Login(modifier: Modifier = Modifier, navController: NavController, authViewM
                     )
                     Spacer(modifier = Modifier.height(12.dp))
 
+                    // Botão de Login, chama a função de autenticação
                     Button(
                         onClick = { authViewModel.login(email, password) },
                         modifier = Modifier.fillMaxWidth().height(50.dp),
@@ -131,6 +151,7 @@ fun Login(modifier: Modifier = Modifier, navController: NavController, authViewM
 
                     Spacer(modifier = Modifier.height(8.dp))
 
+                    // Link para a tela de cadastro
                     TextButton(onClick = { navController.navigate("signup") }) {
                         Text(text = "Não tem conta? Cadastre-se", color = Color(0xFF00E5FF))
                     }
