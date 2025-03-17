@@ -49,6 +49,12 @@ fun Home(modifier: Modifier = Modifier, navController: NavController, authViewMo
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        Button(onClick = { navController.navigate("carbonCalculator") }) {
+            Text(text = "Pegada de CO2")
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
         TextButton(onClick = { authViewModel.logout() }) {
             Text(text = "Sair")
         }
