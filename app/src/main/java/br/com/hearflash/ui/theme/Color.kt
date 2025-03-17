@@ -8,3 +8,5 @@ val BackgroundColor = Color(0xFF121212)  // Cinza Escuro Metálico
 val SurfaceColor = Color(0xFF2C2C2C)  // Cinza Claro Metálico
 val TextPrimaryColor = Color(0xFFFFFFFF)  // Branco Puro
 val TextSecondaryColor = Color(0xFF80D8FF)  // Ciano Suave
+val EnergiaColor = Color(0xFFB39029)  // Amarelo Vibrante
+val CarneColor = Color(0xFF8D284A)    // Rosa Vibrante

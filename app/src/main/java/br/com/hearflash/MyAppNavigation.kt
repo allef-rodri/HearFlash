@@ -49,9 +49,7 @@ fun MyAppNavigation(modifier: Modifier = Modifier, authViewModel: AuthViewModel)
             Dashboard(
                 modifier,
                 navController,
-                authViewModel,
-                pegadaCarbono = 120.0,
-                meta = 100.0
+                authViewModel
             )
         }
     })
