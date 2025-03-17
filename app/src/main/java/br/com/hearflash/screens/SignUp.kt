@@ -55,12 +55,12 @@ fun SignUp(
         }
     }
 
-    // 🎨 Degradê do fundo
+    //  Degradê do fundo
     val backgroundGradient = Brush.verticalGradient(
         colors = listOf(Color(0xFF09203F), Color(0xFF537895), Color(0xFF84A9C0))
     )
 
-    // 🎨 Degradê do Card (janela central)
+    //  Degradê do Card (janela central)
     val cardGradient = Brush.verticalGradient(
         colors = listOf(Color(0xFF1E2A38), Color(0xFF283D52), Color(0xFF345B73))
     )
@@ -71,7 +71,7 @@ fun SignUp(
             .background(backgroundGradient),
         contentAlignment = Alignment.Center
     ) {
-        // 🔹 Card com degradê
+        //  Card com degradê
         Card(
             modifier = Modifier
                 .padding(16.dp),
