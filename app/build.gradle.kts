@@ -56,6 +56,9 @@ dependencies {
     implementation(libs.firebase.auth.ktx)
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.firestore.ktx)
+    implementation(libs.androidx.animation.core.lint)
+    // Adicionando Material Icons Extended para suportar ícones como Visibility
+    implementation("androidx.compose.material:material-icons-extended:1.5.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

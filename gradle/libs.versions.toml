@@ -1,5 +1,5 @@
 [versions]
-agp = "8.8.0"
+agp = "8.9.0"
 kotlin = "2.0.21"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -15,6 +15,7 @@ runtimeLivedata = "1.7.8"
 firebaseAuthKtx = "23.2.0"
 firebaseFirestore = "25.1.2"
 firebaseFirestoreKtx = "25.1.2"
+animationCoreLint = "1.8.0-rc01"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -37,6 +38,7 @@ androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtim
 firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
+androidx-animation-core-lint = { group = "androidx.compose.animation", name = "animation-core-lint", version.ref = "animationCoreLint" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
