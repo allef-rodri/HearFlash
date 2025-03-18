@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -39,10 +40,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Paint
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.nativeCanvas
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -112,19 +115,36 @@ fun Dashboard(
         }
     }
 
-    Scaffold(containerColor = BackgroundColor, topBar = {
-        TopAppBar(
-            title = { Text("Dashboard", color = PrimaryColor) }, navigationIcon = {
-            IconButton(onClick = { navController.navigate("home") }) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "Voltar para Home",
-                    tint = PrimaryColor
-                )
-            }
-        }, colors = TopAppBarDefaults.topAppBarColors(BackgroundColor)
+    val backgroundGradient = Brush.verticalGradient(
+        colors = listOf(
+            Color(0xFF09203F), // Cor inicial
+            Color(0xFF537895), // Cor intermediária
+            Color(0xFF84A9C0)  // Cor final
         )
-    }, content = { innerPadding ->
+    )
+
+
+    Scaffold(
+        containerColor = Color.Transparent,
+        modifier = Modifier
+            .fillMaxSize()
+            .background(backgroundGradient),
+        topBar = {
+            TopAppBar(
+                title = { Text("Dashboard", color = Color(0xFF00E5FF)) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.navigate("home") }) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Voltar para Home",
+                            tint = Color(0xFF00E5FF)
+                        )
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(Color.Transparent)
+            )
+        },
+        content = { innerPadding ->
         Column(
             modifier = modifier
                 .fillMaxSize()
@@ -135,85 +155,139 @@ fun Dashboard(
         ) {
             Card(
                 modifier = Modifier.fillMaxWidth(),
-                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-                colors = CardDefaults.cardColors(SurfaceColor)
+                shape = RoundedCornerShape(16.dp),
+                elevation = CardDefaults.cardElevation(8.dp),
+                colors = CardDefaults.cardColors(containerColor = Color.Transparent)
             ) {
-                Column(
+                Box(
                     modifier = Modifier
-                        .fillMaxWidth()
+                        .background(
+                            Brush.verticalGradient(
+                                colors = listOf(
+                                    Color(0xFF1E2A38),
+                                    Color(0xFF283D52),
+                                    Color(0xFF345B73)
+                                )
+                            ),
+                            shape = RoundedCornerShape(16.dp)
+                        )
                         .padding(16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    contentAlignment = Alignment.Center
                 ) {
-                    Text(
-                        text = "Sua Pegada de Carbono",
-                        style = MaterialTheme.typography.headlineSmall,
-                        color = PrimaryColor
-                    )
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text(text = "$pegadaFormatada kg CO₂", fontSize = 24.sp, color = SecondaryColor)
-                    Text(text = "Meta: 100 kg CO₂", fontSize = 16.sp, color = SecondaryColor)
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(
+                            text = "Sua Pegada de Carbono",
+                            style = MaterialTheme.typography.headlineSmall,
+                            color = Color(0xFF00E5FF),
+                            fontWeight = FontWeight.Bold
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "$pegadaFormatada kg CO₂",
+                            fontSize = 24.sp,
+                            color = Color.White,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                        Text(
+                            text = "Meta: 100 kg CO₂",
+                            fontSize = 16.sp,
+                            color = Color.LightGray
+                        )
+                    }
                 }
             }
+
 
             Column(
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-                    colors = CardDefaults.cardColors(SurfaceColor)
+                    shape = RoundedCornerShape(16.dp),
+                    elevation = CardDefaults.cardElevation(8.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color.Transparent)
                 ) {
-                    Column(
+                    Box(
                         modifier = Modifier
-                            .fillMaxWidth()
+                            .background(
+                                Brush.verticalGradient(
+                                    colors = listOf(
+                                        Color(0xFF1E2A38),
+                                        Color(0xFF283D52),
+                                        Color(0xFF345B73)
+                                    )
+                                ),
+                                shape = RoundedCornerShape(16.dp)
+                            )
                             .padding(16.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        contentAlignment = Alignment.Center
                     ) {
-                        Text(
-                            text = "Detalhamento",
-                            style = MaterialTheme.typography.headlineSmall,
-                            color = PrimaryColor
-                        )
+                        Column(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "Detalhamento",
+                                style = MaterialTheme.typography.headlineSmall,
+                                color = Color(0xFF00E5FF),
+                                fontWeight = FontWeight.Bold
+                            )
 
-                        Spacer(modifier = Modifier.height(10.dp))
+                            Spacer(modifier = Modifier.height(10.dp))
 
-                        PieChartWithLegend(
-                            transporte = transportePegada,
-                            energia = energiaPegada,
-                            carne = carnePegada
-                        )
+                            PieChartWithLegend(
+                                transporte = transportePegada,
+                                energia = energiaPegada,
+                                carne = carnePegada
+                            )
+                        }
                     }
                 }
 
+
                 Card(
                     modifier = Modifier.fillMaxWidth(),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-                    colors = CardDefaults.cardColors(SurfaceColor)
+                    shape = RoundedCornerShape(16.dp),
+                    elevation = CardDefaults.cardElevation(8.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color.Transparent)
                 ) {
-                    Column(
+                    Box(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(16.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
+                            .background(
+                                Brush.verticalGradient(
+                                    colors = listOf(
+                                        Color(0xFF1E2A38),
+                                        Color(0xFF283D52),
+                                        Color(0xFF345B73)
+                                    )
+                                ),
+                                shape = RoundedCornerShape(16.dp)
+                            )
+                            .padding(16.dp)
                     ) {
-                        Text(
-                            text = "Recomendações",
-                            style = MaterialTheme.typography.headlineSmall,
-                            color = PrimaryColor
-                        )
-                        Spacer(modifier = Modifier.height(16.dp))
                         Column(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalAlignment = Alignment.Start
                         ) {
-                            Text("• Considere usar transporte público.", color = SecondaryColor)
-                            Spacer(modifier = Modifier.width(16.dp))
                             Text(
-                                "• Reduza o consumo de energia em horários de pico.",
-                                color = SecondaryColor
+                                text = "Recomendações",
+                                style = MaterialTheme.typography.headlineSmall,
+                                color = Color(0xFF00E5FF),
+                                fontWeight = FontWeight.Bold,
+                                modifier = Modifier.align(Alignment.CenterHorizontally)
                             )
-                            Spacer(modifier = Modifier.width(16.dp))
-                            Text("• Opte por produtos sustentáveis.", color = SecondaryColor)
+                            Spacer(modifier = Modifier.height(16.dp))
+                            Column(
+                                verticalArrangement = Arrangement.spacedBy(10.dp),
+                                modifier = Modifier.padding(horizontal = 8.dp)
+                            ) {
+                                Text("• Considere usar transporte público.", color = Color.White)
+                                Text("• Reduza o consumo de energia em horários de pico.", color = Color.White)
+                                Text("• Opte por produtos sustentáveis.", color = Color.White)
+                            }
                         }
                     }
                 }
