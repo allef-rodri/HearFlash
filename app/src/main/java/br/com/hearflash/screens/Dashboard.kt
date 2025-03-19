@@ -50,12 +50,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.com.hearflash.AuthViewModel
-import br.com.hearflash.ui.theme.BackgroundColor
 import br.com.hearflash.ui.theme.CarneColor
 import br.com.hearflash.ui.theme.EnergiaColor
 import br.com.hearflash.ui.theme.PrimaryColor
 import br.com.hearflash.ui.theme.SecondaryColor
-import br.com.hearflash.ui.theme.SurfaceColor
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 

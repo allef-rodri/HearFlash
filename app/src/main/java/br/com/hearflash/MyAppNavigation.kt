@@ -32,7 +32,6 @@ fun MyAppNavigation(modifier: Modifier = Modifier, authViewModel: AuthViewModel)
         }
         composable("home") {
             Home(
-                modifier,
                 navController,
                 authViewModel
             )

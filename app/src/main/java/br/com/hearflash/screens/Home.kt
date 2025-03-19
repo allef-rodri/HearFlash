@@ -20,7 +20,7 @@ import br.com.hearflash.AuthViewModel
 import br.com.hearflash.R
 
 @Composable
-fun Home(modifier: Modifier = Modifier, navController: NavController, authViewModel: AuthViewModel) {
+fun Home(navController: NavController, authViewModel: AuthViewModel) {
     val authState = authViewModel.authState.observeAsState()
 
     LaunchedEffect(authState.value) {
